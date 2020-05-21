@@ -5,117 +5,96 @@
 /*                                                     +:+                    */
 /*   By: ybakker <ybakker@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/03/05 10:55:04 by ybakker        #+#    #+#                */
-/*   Updated: 2020/03/05 10:55:19 by ybakker       ########   odam.nl         */
+/*   Created: 2020/03/09 16:41:21 by ybakker       #+#    #+#                 */
+/*   Updated: 2020/05/11 11:58:21 by anonymous     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char					*ft_strsub_gnl(char *str, int start, int len)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	int					i;
-	char				*output;
-
-	i = 0;
-	if (!str)
-		return (NULL);
-	if (!(output = malloc(sizeof(char) * (len + 1))))
-		return (NULL);
-	while (i < len && (str[start + i] != '\n'))
-	{
-		output[i] = str[start + i];
-		i++;
-	}
-	output[i] = '\0';
-	return (output);
-}
-
-size_t					ft_strlen_gnl(const char *s)
-{
-	int					i;
+	char	*substring;
+	size_t	i;
+	size_t	length;
 
 	if (!s)
 		return (0);
+	if (ft_strlen(s) < (size_t)start)
+		return (ft_strdup(""));
+	length = ft_strlen(s) - start;
+	substring = NULL;
+	if (length < len)
+		substring = (char *)malloc((length + 1) * sizeof(char));
+	else
+		substring = (char *)malloc((len + 1) * sizeof(char));
+	if (!substring)
+		return (NULL);
 	i = 0;
-	while (s[i] != '\0')
+	while (i < len && s[start + i])
+	{
+		substring[i] = (char)s[i + start];
 		i++;
-	return (i);
+	}
+	substring[i] = '\0';
+	return (substring);
 }
 
-char					*ft_strchr_gnl(const char *s, int c)
+int		ft_strlen(const char *s)
 {
-	int					i;
-	char				*tmp;
+	int length;
 
-	i = 0;
-	tmp = (char *)s;
-	if (!s)
-		return (NULL);
-	if (c == '\0')
-	{
-		while (*tmp)
-			tmp++;
-		return ((char*)tmp);
-	}
-	while (tmp[i] != '\0')
-	{
-		if (tmp[i] == (char)c)
-			return ((char *)&tmp[i]);
-		i++;
-	}
-	if (*tmp == '\0' && c == '\0')
-	{
-		return (tmp);
-	}
-	return (NULL);
+	length = 0;
+	while (s && s[length] != '\0')
+		length++;
+	return (length);
 }
 
-char					*ft_strdup_gnl(const char *s1)
+char	*ft_strdup(const char *s1)
 {
-	char				*output;
-	int					i;
-	int					size;
+	int		len;
+	int		i;
+	char	*str;
 
-	if (!s1)
-		return (NULL);
-	size = ft_strlen_gnl(s1);
-	if (!(output = malloc(sizeof(char) * (size + 1))))
-		return (NULL);
+	len = ft_strlen(s1);
 	i = 0;
-	while ((char)s1[i])
+	str = (char *)malloc((len + 1) * sizeof(char));
+	if (!str)
+		return (NULL);
+	while (i < len)
 	{
-		output[i] = s1[i];
+		str[i] = s1[i];
 		i++;
 	}
-	output[i] = '\0';
-	return (output);
+	str[i] = '\0';
+	return (str);
 }
 
-char					*ft_strjoin_gnl(char const *s1, char const *s2)
+char	*ft_strjoin(char *s1, char *s2)
 {
-	unsigned long		i;
-	char				*output;
-	unsigned long		size1;
-	unsigned long		size2;
+	char		*strduo;
+	size_t		i;
+	size_t		j;
 
-	if (!(s1 && s2))
-		return (NULL);
-	size1 = ft_strlen_gnl(s1);
-	size2 = ft_strlen_gnl(s2);
-	if (!(output = malloc(sizeof(char) * (size1 + size2 + 1))))
-		return (NULL);
 	i = 0;
-	while (i < size1)
+	j = 0;
+	strduo = (char *)malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
+	if (!strduo)
 	{
-		output[i] = s1[i];
+		free(s1);
+		return (NULL);
+	}
+	while (s1 && i < ft_strlen(s1))
+	{
+		strduo[i] = s1[i];
 		i++;
 	}
-	while (i < size1 + size2)
+	while (s2 && j < ft_strlen(s2))
 	{
-		output[i] = s2[i - size1];
-		i++;
+		strduo[i + j] = s2[j];
+		j++;
 	}
-	output[i] = '\0';
-	return (output);
+	strduo[i + j] = '\0';
+	free(s1);
+	return (strduo);
 }

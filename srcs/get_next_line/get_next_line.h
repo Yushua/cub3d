@@ -5,25 +5,31 @@
 /*                                                     +:+                    */
 /*   By: ybakker <ybakker@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/03/05 10:54:48 by ybakker        #+#    #+#                */
-/*   Updated: 2020/03/05 10:55:24 by ybakker       ########   odam.nl         */
+/*   Created: 2020/03/09 16:41:21 by ybakker       #+#    #+#                 */
+/*   Updated: 2020/05/11 11:58:54 by anonymous     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#	ifndef __GET_NEXT_LINE_H
-#	define __GET_NEXT_LINE_H
-#	include <unistd.h>
-#	include <fcntl.h>
-#	include <stdlib.h>
-#	ifndef BUFFER_SIZE
-#	define BUFFER_SIZE 100
-#	endif
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
 
-int				get_next_line(const int fd, char **line);
-size_t			ft_strlen_gnl(const char *s);
-char			*ft_strchr_gnl(const char *s, int c);
-char			*ft_strdup_gnl(const char *s1);
-char			*ft_strjoin_gnl(char const *s1, char const *s2);
-char			*ft_strsub_gnl(char *str, int start, int len);
+#define BUFFER_SIZE 10000
+# include <stdlib.h>
+#include <unistd.h>
+#include <fcntl.h>
 
-#	endif
+typedef struct	s_gnl
+{
+	int			bytes_read;
+	int			fd;
+	char		*line_read;
+	int			newline;
+}				t_gnl;
+
+char			*ft_substr(char const *s, unsigned int start, size_t len);
+int				ft_strlen(const char *s);
+char			*ft_strdup(const char *s1);
+char			*ft_strjoin(char *s1, char *s2);
+int				get_next_line(int fd, char **line);
+
+#endif
