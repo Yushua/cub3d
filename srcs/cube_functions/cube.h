@@ -157,7 +157,7 @@ typedef struct  s_struct_m {
 	t_Double	Double;
 	t_Ray		Ray;
 	t_texture	texture[5];
-	
+
 }               t_struct_m;
 
 void            my_mlx_pixel_put(t_data *data, int x, int y, int color);

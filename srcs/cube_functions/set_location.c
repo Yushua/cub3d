@@ -71,6 +71,4 @@ void	set_location(t_struct_m *main)
     main->Ray.posX = x;
     main->Ray.posY += 0.5;
     main->Ray.posX -= 0.5;
-    printf("location ray ==x[%f]y[%f]\n", main->Ray.posX, main->Ray.posY);
-    printf("x[%d]y[%d]\n", x, y);
 }

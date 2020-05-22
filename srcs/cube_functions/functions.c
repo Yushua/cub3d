@@ -2,22 +2,16 @@
 
 void        set_value_texture(t_struct_m *main)
 {
-    // int i = 0;
-    // while (i < 5)
-    // {
-    //     main->texture[i].texture_adress = (int *)mlx_get_data_addr(&main->texture[i].texture, &main->texture[i].bits_per_pixel, &main->texture[i].line_lenght, &main->texture[i].endian);
-    //     i++;
-    // }
-    // main->texture[0].texture = mlx_xpm_file_to_image(main->vars.mlx, main->place.NO, &main->texture[0].texture_width, &main->texture[0].texture_height);
-    // free(main->place.NO);
-    // main->texture[1].texture = mlx_xpm_file_to_image(main->vars.mlx, main->place.SO, &main->texture[1].texture_width, &main->texture[1].texture_height);
-    // free(main->place.SO);
-    // main->texture[2].texture = mlx_xpm_file_to_image(main->vars.mlx, main->place.WE, &main->texture[2].texture_width, &main->texture[2].texture_height);
-    // free(main->place.WE);
-    // main->texture[3].texture = mlx_xpm_file_to_image(main->vars.mlx, main->place.EA, &main->texture[3].texture_width, &main->texture[3].texture_height);
-    // free(main->place.EA);
-    // main->texture[4].texture = mlx_xpm_file_to_image(main->vars.mlx, main->place.S, &main->texture[4].texture_width, &main->texture[4].texture_height);
-    // free(main->place.S);
+    main->texture[0].texture = mlx_xpm_file_to_image(main->vars.mlx, "/textures/wall_2.xpm", &main->texture[0].texture_width, &main->texture[0].texture_height);
+	free(main->place.NO);
+    main->texture[1].texture = mlx_xpm_file_to_image(main->vars.mlx, main->place.SO, &main->texture[1].texture_width, &main->texture[1].texture_height);
+	free(main->place.SO);
+    main->texture[2].texture = mlx_xpm_file_to_image(main->vars.mlx, main->place.WE, &main->texture[2].texture_width, &main->texture[2].texture_height);
+	free(main->place.WE);
+	main->texture[3].texture = mlx_xpm_file_to_image(main->vars.mlx, main->place.EA, &main->texture[3].texture_width, &main->texture[3].texture_height);
+    free(main->place.WE);
+	main->texture[4].texture = mlx_xpm_file_to_image(main->vars.mlx, main->place.S, &main->texture[4].texture_width, &main->texture[4].texture_height);
+    free(main->place.S);
 }
 
 int		ft_atoi_cube(char *str, t_struct_m *main, int i)
@@ -119,7 +113,6 @@ void		printmap(t_struct_m *main)
 		y++;
 	}
 	printf("end\n");
-	set_value_texture(main);
 }
 
 int		create_trgb(int r, int g, int b)

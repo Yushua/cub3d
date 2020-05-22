@@ -42,10 +42,10 @@ void    verLine_texture(int x, t_struct_m *main)
     while(y < main->Ray.drawEnd)
     {
         // Cast the texture coordinate to integer, and mask with (texHeight - 1) in case of overflow
-        main->Ray.texY = (int)main->Ray.texPos & (main->texture[colour].tex_height - 1);
+        main->Ray.texY = (int)main->Ray.texPos & (main->texture[colour].texture_height - 1);
         main->Ray.texPos += main->Ray.step;
         //make sure it now makes the correct texture
-        int color = (main->texture[colour].texture_adress[main->texture[colour].tex_height * main->Ray.texY * main->Ray.texX]);
+        int color = (main->texture[colour].texture_adress[main->texture[colour].texture_height * main->Ray.texY * main->Ray.texX]);
         //make color darker for y-sides: R, G and B byte each divided through two with a "shift" and an "and"
         my_mlx_pixel_put(main, x, y, color);
         y++;
