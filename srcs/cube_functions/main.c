@@ -6,7 +6,7 @@
 /*   By: ybakker <ybakker@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/03/09 16:41:21 by ybakker       #+#    #+#                 */
-/*   Updated: 2020/05/22 14:03:15 by anonymous     ########   odam.nl         */
+/*   Updated: 2020/05/22 15:25:20 by anonymous     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ int     main(void)
     
     main = ft_calloc(1, sizeof(t_struct_m));
 
-    main->vars.mlx = mlx_init();
+    printf("hello\n");
+    printf("hello\n");
     background(main);
     set_value(main);
     ft_size_store_map(main);
@@ -38,7 +39,9 @@ int     main(void)
     //     return (0);
     printmap(main);
     set_value_texture(main);
+    ft_putstr("data");
 	int i = 0;
+    main->vars.mlx = mlx_init();
     main->vars.win = mlx_new_window(main->vars.mlx, main->place.s_width, main->place.s_height, "cube");
     main->img.img = mlx_new_image(main->vars.mlx, main->place.s_width, main->place.s_height);
     main->img.addr = mlx_get_data_addr(main->img.img, &main->img.bits_per_pixel, &main->img.line_length,
@@ -50,7 +53,7 @@ int     main(void)
     }
 	ft_putstr("done");
 	// mlx_loop_hook(main->vars.mlx, render_next_frame, main);
-	mlx_loop_hook(main->vars.mlx, render_next_frame_structure, main);
+    mlx_loop_hook(main->vars.mlx, render_next_frame_structure, main);
     mlx_hook(main->vars.win, 2, 1L<<0, wasd_2, main);
     mlx_loop(main->vars.mlx);
 

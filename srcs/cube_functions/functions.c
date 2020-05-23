@@ -2,16 +2,21 @@
 
 void        set_value_texture(t_struct_m *main)
 {
-    main->texture[0].texture = mlx_xpm_file_to_image(main->vars.mlx, "/textures/wall_2.xpm", &main->texture[0].texture_width, &main->texture[0].texture_height);
-	free(main->place.NO);
+	ft_putstr(main->place.NO);
+	ft_putstr("NO");
+    main->texture[0].texture = mlx_xpm_file_to_image(main->vars.mlx, main->place.NO, &main->texture[0].texture_width, &main->texture[0].texture_height);
+	ft_putstr(main->place.SO);
+	ft_putstr("SO");
     main->texture[1].texture = mlx_xpm_file_to_image(main->vars.mlx, main->place.SO, &main->texture[1].texture_width, &main->texture[1].texture_height);
-	free(main->place.SO);
+	ft_putstr(main->place.WE);
+	ft_putstr("WE");
     main->texture[2].texture = mlx_xpm_file_to_image(main->vars.mlx, main->place.WE, &main->texture[2].texture_width, &main->texture[2].texture_height);
-	free(main->place.WE);
+    ft_putstr(main->place.WE);
+	ft_putstr("EA");
 	main->texture[3].texture = mlx_xpm_file_to_image(main->vars.mlx, main->place.EA, &main->texture[3].texture_width, &main->texture[3].texture_height);
-    free(main->place.WE);
+    ft_putstr(main->place.S);
+	ft_putstr("S");
 	main->texture[4].texture = mlx_xpm_file_to_image(main->vars.mlx, main->place.S, &main->texture[4].texture_width, &main->texture[4].texture_height);
-    free(main->place.S);
 }
 
 int		ft_atoi_cube(char *str, t_struct_m *main, int i)

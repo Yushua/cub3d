@@ -26,6 +26,9 @@ void		set_value(t_struct_m *main)
 	
 	// main->Ray.planeX = -0.66;
 	// main->Ray.planeY = 0;
+// moves bonus
+
+	main->place.crouch = 0;
 
 //cube
 	main->place.x = 100;//position

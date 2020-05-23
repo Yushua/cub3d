@@ -72,6 +72,9 @@ typedef struct  s_place {
 	int			mapp;
 	int			mapE;//e = for empty
 	int			mapc;
+
+	//moves_bonus
+	int			crouch;
 }               t_place;
 
 typedef struct  s_Double {
@@ -212,6 +215,7 @@ int				create_trgb(int r, int g, int b);
 void			printmap(t_struct_m *main);
 int 			render_next_frame_structure(t_struct_m *main);
 void    		verLine_texture(int x, t_struct_m *main);
-void        set_value_texture(t_struct_m *main);
+void        	set_value_texture(t_struct_m *main);
+void    		verLine_structure(int  drawStart, int  drawEnd, t_struct_m *main);
 
 #endif

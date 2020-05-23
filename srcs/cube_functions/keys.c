@@ -39,6 +39,11 @@ int             wasd_2(int keycode, t_struct_m *main)
     printf("keycode == %d\n", keycode);
     if (keycode > 0)
         background(main);
+    if (keycode == 99)//C
+    {
+        main->place.crouch == 1;
+        printf("C pressed\n");
+    }
     if (keycode == W || keycode == 119)
     {
         if(main->place.cubemap[(int)(main->Ray.posY)][(int)(main->Ray.posX + main->Ray.dirX * moveSpeed)] != '1')
