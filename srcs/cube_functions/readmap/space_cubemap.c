@@ -59,6 +59,7 @@ static void     **ft_substr_save(char const *s, t_struct_m *main, int y)
 		return (0);
 	main->place.cubemap[y] = NULL;
 	main->place.cubemap[y] = (char *)malloc((len + 1) * sizeof(char));
+    main->Ray.yy = y;
 	if (!main->place.cubemap[y])
 		return (NULL);
 	i = 0;

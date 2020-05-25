@@ -12,14 +12,14 @@
 
 #include "cube.h"
 
-void    verLine_structure(int  drawStart, int  drawEnd, t_struct_m *main)
+void    verLine_structure(t_struct_m *main)
 {
     int h   = main->place.s_height / 2;
     int i   = 0;
     int     colour;
 
     colour = create_trgb(main->place.Fcol1, main->place.Fcol2, main->place.Fcol3);//floor
-    while (i != h)
+    while (i <= h)
     {
         my_mlx_pixel_put(main, main->Ray.x, i, colour);
         i++;
@@ -44,36 +44,41 @@ void    verLine_structure(int  drawStart, int  drawEnd, t_struct_m *main)
         if(main->Ray.posY < main->Ray.mapY)//right
             main->Ray.texNum = 3;
     }
+    double wallX;
     if (main->Ray.side == 0) 
-        main->Ray.wallX = main->Ray.posY + main->Ray.perpWallDist * main->Ray.rayDirY;
+        wallX = main->Ray.posY + main->Ray.perpWallDist * main->Ray.rayDirY;
     else
-        main->Ray.wallX = main->Ray.posX + main->Ray.perpWallDist * main->Ray.rayDirX;
-    main->Ray.wallX -= floor(main->Ray.wallX);
+        wallX = main->Ray.posX + main->Ray.perpWallDist * main->Ray.rayDirX;
+    wallX -= floor(wallX);
 
     //x coordinate on the texture
-    main->Ray.texX = (int)(main->Ray.wallX * (double)(main->texture[main->Ray.texNum].texture_width));
+    int texX = (int)(wallX * (double)(main->texture[main->Ray.texNum].texture_width));
     if(main->Ray.side == 0 && main->Ray.rayDirX > 0)
-        main->Ray.texX = main->texture[main->Ray.texNum].texture_width - main->Ray.texX - 1;
+        texX = main->texture[main->Ray.texNum].texture_width - texX - 1;
     if(main->Ray.side == 1 && main->Ray.rayDirY < 0)
-        main->Ray.texX = main->texture[main->Ray.texNum].texture_width - main->Ray.texX - 1;
+        texX = main->texture[main->Ray.texNum].texture_width - texX - 1;
 
+    printf("texture width [%d] texture height [%d] texX == [%d]\n", main->texture[main->Ray.texNum].texture_width, main->texture[main->Ray.texNum].texture_height, texX);
     // How much to increase the texture coordinate per screen pixel
     main->Ray.step = 1.0 * main->texture[main->Ray.texNum].texture_height / main->Ray.lineHeight;
 
     // Starting texture coordinate
+    printf("start == [%d]end == [%d]height == [%d]lineheight == [%d]step == [%f]\n",main->Ray.drawStart, main->Ray.drawEnd, main->place.s_height, main->Ray.lineHeight, main->Ray.step);
     main->Ray.texPos = (main->Ray.drawStart - main->place.s_height / 2 + main->Ray.lineHeight / 2) * main->Ray.step;
-	while (drawStart < drawEnd && drawStart <= main->place.s_height)
+    // set_value_texture(main);
+	while (main->Ray.drawStart < main->Ray.drawEnd && main->Ray.drawStart <= main->place.s_height)
 	{
         // Cast the texture coordinate to integer, and mask with (texHeight - 1) in case of overflow
-        main->Ray.texY = (int)main->Ray.texPos & (main->texture[main->Ray.texNum].texture_height - 1);
+        main->Ray.texY = (int)main->Ray.texPos & (63);
+        printf("texpos == [%f]texy == [%d]\n", main->Ray.texPos, main->Ray.texY);
         main->Ray.texPos += main->Ray.step;
         //make sure it now makes the correct texture
         printf("[%d][%d][%d]\n", main->texture[main->Ray.texNum].texture_height, main->Ray.texY, main->Ray.texX);
         colour = (main->texture[main->Ray.texNum].texture_adress[main->texture[main->Ray.texNum].texture_height * main->Ray.texY * main->Ray.texX]);
         printf("[%d]\n", colour);
         //make colour darker for y-sides: R, G and B byte each divided through two with a "shift" and an "and"
-        my_mlx_pixel_put(main, main->Ray.x, drawStart, colour);
-        drawStart++;
+        my_mlx_pixel_put(main, main->Ray.x, main->Ray.drawStart, colour);
+        main->Ray.drawStart++;
 	}
 }
 
@@ -147,16 +152,16 @@ int 	render_next_frame_structure(t_struct_m *main)
             main->Ray.perpWallDist = ((main->Ray.mapY - main->Ray.posY + (1 - main->Ray.stepY) / 2) / main->Ray.rayDirY);
         //Calculate height of line to draw on screen
 
-        int lineHeight = (int)(main->place.s_height / main->Ray.perpWallDist);
+        main->Ray.lineHeight = (int)(main->place.s_height / main->Ray.perpWallDist);
 
         //calculate lowest and highest pixel to fill in current stripe
-        int drawStart = (-lineHeight / 2 + main->place.s_height / 2);
-        if(drawStart < 0)
-            drawStart = 0;
-        int drawEnd = (lineHeight / 2 + main->place.s_height / 2);
-        if(drawEnd >= main->place.s_height)
-            drawEnd = main->place.s_height - 1;
-        verLine_structure(drawStart, drawEnd, main);
+        main->Ray.drawStart = (-main->Ray.lineHeight / 2 + main->place.s_height / 2);
+        if(main->Ray.drawStart < 0)
+            main->Ray.drawStart = 0;
+        main->Ray.drawEnd = (main->Ray.lineHeight / 2 + main->place.s_height / 2);
+        if(main->Ray.drawEnd >= main->place.s_height)
+            main->Ray.drawEnd = main->place.s_height - 1;
+        verLine_structure(main);
         main->Ray.x++;
     }
 	mlx_put_image_to_window(main->vars.mlx, main->vars.win, main->img.img, 0, 0);

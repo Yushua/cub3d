@@ -4,6 +4,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+#include <sys/types.h>
 #include "../mlx/mlx.h"
 #include "../get_next_line/get_next_line.h"
 #include "../libft/libft.h"
@@ -126,6 +129,7 @@ typedef struct  s_Ray {
 
 	int			h;
 	int			x;
+	int			yy;
 	int			lineHeight;
 
 	int			drawStart;
@@ -143,7 +147,7 @@ typedef struct  s_Ray {
 typedef struct  s_texture {
 	unsigned int 	buffer[800][1200];
 	void			*texture;
-	int				*texture_adress;
+	char				*texture_adress;
 
 	int				line_lenght;
 	int				bits_per_pixel;
@@ -160,7 +164,6 @@ typedef struct  s_struct_m {
 	t_Double	Double;
 	t_Ray		Ray;
 	t_texture	texture[5];
-
 }               t_struct_m;
 
 void            my_mlx_pixel_put(t_data *data, int x, int y, int color);
@@ -216,6 +219,6 @@ void			printmap(t_struct_m *main);
 int 			render_next_frame_structure(t_struct_m *main);
 void    		verLine_texture(int x, t_struct_m *main);
 void        	set_value_texture(t_struct_m *main);
-void    		verLine_structure(int  drawStart, int  drawEnd, t_struct_m *main);
+void    		verLine_structure(t_struct_m *main);
 
 #endif

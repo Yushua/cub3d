@@ -6,7 +6,7 @@
 /*   By: ybakker <ybakker@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/03/09 16:41:21 by ybakker       #+#    #+#                 */
-/*   Updated: 2020/05/22 15:25:20 by anonymous     ########   odam.nl         */
+/*   Updated: 2020/05/25 19:29:40 by anonymous     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,21 +24,18 @@ int     main(void)
     
     main = ft_calloc(1, sizeof(t_struct_m));
 
-    printf("hello\n");
-    printf("hello\n");
     background(main);
     set_value(main);
     ft_size_store_map(main);
     readmap(main);
     set_location(main);
-    printf("this means my other functions stil work\n");
+    ft_putstr("this means my other functions stil work\n");
     //map_correct(main);
     if (main->place.error == -1)
-        printf("no error\n");
+        ft_putstr("no error\n");
     // else if (main->place.error_c == 0) //don't forget to free
     //     return (0);
     printmap(main);
-    set_value_texture(main);
     ft_putstr("data");
 	int i = 0;
     main->vars.mlx = mlx_init();
@@ -46,11 +43,7 @@ int     main(void)
     main->img.img = mlx_new_image(main->vars.mlx, main->place.s_width, main->place.s_height);
     main->img.addr = mlx_get_data_addr(main->img.img, &main->img.bits_per_pixel, &main->img.line_length,
                                  &main->img.endian);
-    while (i == 4)
-    {
-        main->texture[i].texture_adress = (int *)mlx_get_data_addr(main->texture[i].texture, &main->texture[i].bits_per_pixel, &main->texture[i].line_lenght, &main->texture[i].endian);
-        i++;
-    }
+    set_value_texture(main);
 	ft_putstr("done");
 	// mlx_loop_hook(main->vars.mlx, render_next_frame, main);
     mlx_loop_hook(main->vars.mlx, render_next_frame_structure, main);
