@@ -57,25 +57,21 @@ void    verLine_structure(t_struct_m *main)
         texX = main->texture[main->Ray.texNum].texture_width - texX - 1;
     if(main->Ray.side == 1 && main->Ray.rayDirY < 0)
         texX = main->texture[main->Ray.texNum].texture_width - texX - 1;
-
-    printf("texture width [%d] texture height [%d] texX == [%d]\n", main->texture[main->Ray.texNum].texture_width, main->texture[main->Ray.texNum].texture_height, texX);
+        
     // How much to increase the texture coordinate per screen pixel
     main->Ray.step = 1.0 * main->texture[main->Ray.texNum].texture_height / main->Ray.lineHeight;
 
-    // Starting texture coordinate
-    printf("start == [%d]end == [%d]height == [%d]lineheight == [%d]step == [%f]\n",main->Ray.drawStart, main->Ray.drawEnd, main->place.s_height, main->Ray.lineHeight, main->Ray.step);
+    // // Starting texture coordinate
+
     main->Ray.texPos = (main->Ray.drawStart - main->place.s_height / 2 + main->Ray.lineHeight / 2) * main->Ray.step;
     // set_value_texture(main);
 	while (main->Ray.drawStart < main->Ray.drawEnd && main->Ray.drawStart <= main->place.s_height)
 	{
         // Cast the texture coordinate to integer, and mask with (texHeight - 1) in case of overflow
-        main->Ray.texY = (int)main->Ray.texPos & (63);
-        printf("texpos == [%f]texy == [%d]\n", main->Ray.texPos, main->Ray.texY);
+        main->Ray.texY = (int)main->Ray.texPos & (main->texture[main->Ray.texNum].texture_height - 1);
         main->Ray.texPos += main->Ray.step;
         //make sure it now makes the correct texture
-        printf("[%d][%d][%d]\n", main->texture[main->Ray.texNum].texture_height, main->Ray.texY, main->Ray.texX);
-        colour = (main->texture[main->Ray.texNum].texture_adress[main->texture[main->Ray.texNum].texture_height * main->Ray.texY * main->Ray.texX]);
-        printf("[%d]\n", colour);
+        colour = (main->texture[main->Ray.texNum].texture_adress[main->texture[main->Ray.texNum].texture_height * main->Ray.texY + main->Ray.texX]);
         //make colour darker for y-sides: R, G and B byte each divided through two with a "shift" and an "and"
         my_mlx_pixel_put(main, main->Ray.x, main->Ray.drawStart, colour);
         main->Ray.drawStart++;

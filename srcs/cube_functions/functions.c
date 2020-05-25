@@ -21,7 +21,7 @@ void        set_value_texture(t_struct_m *main)
 	// char *str = (char *)malloc((len + 1) * sizeof(char));
 	int fd = open(main->place.NO, O_RDONLY);//use to chekc if file is valid
 	printf("fd == %d\n", fd);
-    main->texture[0].texture = mlx_xpm_file_to_image(main->vars.mlx, main->place.NO, &(main->texture[0].texture_width), &(main->texture[0].texture_height));
+    main->texture[0].texture = mlx_xpm_file_to_image(main->vars.mlx, "srcs/cube_functions/wall_2.xpm", &(main->texture[0].texture_width), &(main->texture[0].texture_height));
     printf("NO width == [%d] height == [%d]\n",main->texture[0].texture_width, main->texture[0].texture_height);
     i++;
     ft_putstr(main->place.SO);
