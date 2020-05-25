@@ -44,20 +44,20 @@ void    verLine_structure(t_struct_m *main)
         if(main->Ray.posY < main->Ray.mapY)//right
             main->Ray.texNum = 3;
     }
-    double wallX;
+    //wallx
     if (main->Ray.side == 0) 
-        wallX = main->Ray.posY + main->Ray.perpWallDist * main->Ray.rayDirY;
+        main->Ray.wallX = main->Ray.posY + main->Ray.perpWallDist * main->Ray.rayDirY;
     else
-        wallX = main->Ray.posX + main->Ray.perpWallDist * main->Ray.rayDirX;
-    wallX -= floor(wallX);
+        main->Ray.wallX = main->Ray.posX + main->Ray.perpWallDist * main->Ray.rayDirX;
+    main->Ray.wallX -= floor(main->Ray.wallX);
 
     //x coordinate on the texture
-    int texX = (int)(wallX * (double)(main->texture[main->Ray.texNum].texture_width));
+    main->Ray.texX = (int)(main->Ray.wallX * (double)(main->texture[main->Ray.texNum].texture_width));
     if(main->Ray.side == 0 && main->Ray.rayDirX > 0)
-        texX = main->texture[main->Ray.texNum].texture_width - texX - 1;
+        main->Ray.texX = main->texture[main->Ray.texNum].texture_width - main->Ray.texX - 1;
     if(main->Ray.side == 1 && main->Ray.rayDirY < 0)
-        texX = main->texture[main->Ray.texNum].texture_width - texX - 1;
-        
+        main->Ray.texX = main->texture[main->Ray.texNum].texture_width - main->Ray.texX - 1;
+
     // How much to increase the texture coordinate per screen pixel
     main->Ray.step = 1.0 * main->texture[main->Ray.texNum].texture_height / main->Ray.lineHeight;
 
