@@ -18,38 +18,42 @@ void        set_value_texture(t_struct_m *main)
     ft_putstr("NO");
 	// if (mlx_xpm_file_to_image(main->vars.mlx, "./textures/wall_2.xm", &(main->texture[0].texture_width), &(main->texture[0].texture_height)) == NULL)
 	// 	ft_putstr("hello");
-	// int len = ft_strlen("wall_2.xpm");
+	// int len = ft_strlen("greystone.xpm");
 	// char *str = (char *)malloc((len + 1) * sizeof(char));
-	int fd = open(main->place.NO, O_RDONLY);//use to chekc if file is valid
+	int fd = open("srcs/cube_functions/textures/greenlight.xpm", O_RDONLY);//use to chekc if file is valid
 	printf("fd == %d\n", fd);
-	str = main->place.NO;
-    main->texture[0].texture = mlx_xpm_file_to_image(main->vars.mlx, "srcs/cube_functions/wall_2.xpm", &(main->texture[0].texture_width), &(main->texture[0].texture_height));
-    printf("NO width == [%d] height == [%d]\n",main->texture[0].texture_width, main->texture[0].texture_height);
+    main->texture[0].texture = mlx_xpm_file_to_image(main->vars.mlx, "srcs/cube_functions/textures/wall_1.xpm", &(main->texture[0].texture_width), &(main->texture[0].texture_height));
+	printf("NO width == [%d] height == [%d]\n",main->texture[0].texture_width, main->texture[0].texture_height);
     i++;
     ft_putstr(main->place.SO);
     ft_putstr("SO");
-    main->texture[1].texture = mlx_xpm_file_to_image(main->vars.mlx, "srcs/cube_functions/wall_2.xpm", &(main->texture[1].texture_width), &(main->texture[1].texture_height));
+    main->texture[1].texture = mlx_xpm_file_to_image(main->vars.mlx, "srcs/cube_functions/textures/wall_4.xpm", &(main->texture[1].texture_width), &(main->texture[1].texture_height));
     printf("width == [%d] height == [%d]\n",main->texture[1].texture_width, main->texture[1].texture_height);
     i++;
     ft_putstr(main->place.WE);
     ft_putstr("WE");
-    main->texture[2].texture = mlx_xpm_file_to_image(main->vars.mlx, "srcs/cube_functions/wall_2.xpm", &(main->texture[2].texture_width), &(main->texture[2].texture_height));
+    main->texture[2].texture = mlx_xpm_file_to_image(main->vars.mlx, "srcs/cube_functions/textures/wall_2.xpm", &(main->texture[2].texture_width), &(main->texture[2].texture_height));
     printf("width == [%d] height == [%d]\n",main->texture[2].texture_width, main->texture[2].texture_height);
     i++;
     ft_putstr(main->place.WE);
     ft_putstr("EA");
-    main->texture[3].texture = mlx_xpm_file_to_image(main->vars.mlx, "srcs/cube_functions/wall_2.xpm", &(main->texture[3].texture_width), &(main->texture[3].texture_height));
+    main->texture[3].texture = mlx_xpm_file_to_image(main->vars.mlx, "srcs/cube_functions/textures/wall_3.xpm", &(main->texture[3].texture_width), &(main->texture[3].texture_height));
     printf("width == [%d] height == [%d]\n",main->texture[3].texture_width, main->texture[3].texture_height);
     i++;
     ft_putstr(main->place.S);
     ft_putstr("S");
-    main->texture[4].texture = mlx_xpm_file_to_image(main->vars.mlx, "srcs/cube_functions/wall_2.xpm", &main->texture[4].texture_width, &main->texture[4].texture_height);
+    main->texture[4].texture = mlx_xpm_file_to_image(main->vars.mlx, "srcs/cube_functions/textures/greystone.xpm", &main->texture[4].texture_width, &main->texture[4].texture_height);
     printf("width == [%d] height == [%d]\n",main->texture[4].texture_width, main->texture[4].texture_height);
-    main->texture[0].texture_adress = (mlx_get_data_addr(main->texture[0].texture, &main->texture[0].bits_per_pixel, &main->texture[0].line_lenght, &main->texture[0].endian));
-    main->texture[1].texture_adress = (mlx_get_data_addr(main->texture[1].texture, &main->texture[1].bits_per_pixel, &main->texture[1].line_lenght, &main->texture[1].endian));
-    main->texture[2].texture_adress = (mlx_get_data_addr(main->texture[2].texture, &main->texture[2].bits_per_pixel, &main->texture[2].line_lenght, &main->texture[2].endian));
-    main->texture[3].texture_adress = (mlx_get_data_addr(main->texture[3].texture, &main->texture[3].bits_per_pixel, &main->texture[3].line_lenght, &main->texture[3].endian));
-    main->texture[4].texture_adress = (mlx_get_data_addr(main->texture[4].texture, &main->texture[4].bits_per_pixel, &main->texture[4].line_lenght, &main->texture[4].endian));
+	if (main->texture[0].texture == NULL || main->texture[1].texture == NULL || main->texture[2].texture == NULL || main->texture[3].texture == NULL || main->texture[4].texture == NULL)
+	{
+		main->place.error_c == 14;
+		ft_error(main);
+	}
+    main->texture[0].texture_adress = (int *)(mlx_get_data_addr(main->texture[0].texture, &main->texture[0].bits_per_pixel, &main->texture[0].line_lenght, &main->texture[0].endian));
+    main->texture[1].texture_adress = (int *)(mlx_get_data_addr(main->texture[1].texture, &main->texture[1].bits_per_pixel, &main->texture[1].line_lenght, &main->texture[1].endian));
+    main->texture[2].texture_adress = (int *)(mlx_get_data_addr(main->texture[2].texture, &main->texture[2].bits_per_pixel, &main->texture[2].line_lenght, &main->texture[2].endian));
+    main->texture[3].texture_adress = (int *)(mlx_get_data_addr(main->texture[3].texture, &main->texture[3].bits_per_pixel, &main->texture[3].line_lenght, &main->texture[3].endian));
+    main->texture[4].texture_adress = (int *)(mlx_get_data_addr(main->texture[4].texture, &main->texture[4].bits_per_pixel, &main->texture[4].line_lenght, &main->texture[4].endian));
 }
 
 int		ft_atoi_cube(char *str, t_struct_m *main, int i)

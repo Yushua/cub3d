@@ -65,10 +65,10 @@ void    verLine_structure(t_struct_m *main)
 
     main->Ray.texPos = (main->Ray.drawStart - main->place.s_height / 2 + main->Ray.lineHeight / 2) * main->Ray.step;
     // set_value_texture(main);
-	while (main->Ray.drawStart < main->Ray.drawEnd && main->Ray.drawStart <= main->place.s_height)
+	while (main->Ray.drawStart < main->Ray.drawEnd)
 	{
         // Cast the texture coordinate to integer, and mask with (texHeight - 1) in case of overflow
-        main->Ray.texY = (int)main->Ray.texPos & (main->texture[main->Ray.texNum].texture_height - 1);
+        main->Ray.texY = (int)(main->Ray.texPos) & (main->texture[main->Ray.texNum].texture_height - 1);
         main->Ray.texPos += main->Ray.step;
         //make sure it now makes the correct texture
         colour = (main->texture[main->Ray.texNum].texture_adress[main->texture[main->Ray.texNum].texture_height * main->Ray.texY + main->Ray.texX]);

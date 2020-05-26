@@ -40,6 +40,8 @@ void        ft_error(t_struct_m *main)
         printf("wrong input in map, can't read map, fix your map\n");
     else if (main->place.error_c == 13)
         printf("problem in malloc, try again\n");
+    else if (main->place.error_c == 14)
+        printf("problem in functions, line is NULL\n");
     main->place.error_c = 0;
     //come sin ehre, error shoudl only happen once
 }
