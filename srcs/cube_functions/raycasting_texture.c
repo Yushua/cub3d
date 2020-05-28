@@ -76,6 +76,7 @@ void    verLine_structure(t_struct_m *main)
         my_mlx_pixel_put(main, main->Ray.x, main->Ray.drawStart, colour);
         main->Ray.drawStart++;
 	}
+    main->ZBuffer[main->Ray.x] = main->Ray.perpWallDist; //perpendicular distance is used
 }
 
 int 	render_next_frame_structure(t_struct_m *main)
@@ -160,6 +161,7 @@ int 	render_next_frame_structure(t_struct_m *main)
         verLine_structure(main);
         main->Ray.x++;
     }
+    render_next_frame_sprites(main);
 	mlx_put_image_to_window(main->vars.mlx, main->vars.win, main->img.img, 0, 0);
 	return (0);
 }

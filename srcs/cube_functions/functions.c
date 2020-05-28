@@ -1,19 +1,107 @@
 #include "cube.h"
 
+void		spritesnumb(t_struct_m *main)
+{
+	int	y = 0;
+	int	x = 0;
+
+	while (y <= main->Ray.yy)
+	{
+		while (main->place.cubemap[y][x])
+		{
+			if (main->place.cubemap[y][x] == 2)
+			{
+				main->numSprites++;
+			}
+			x++;
+		}
+		y++;
+	}
+	main->sprites = ft_calloc(main->numSprites, sizeof(t_sprites));
+    main->ZBuffer = ft_calloc(main->place.s_width, sizeof(double));
+    main->spriteDistance = ft_calloc(main->numSprites, sizeof(double));
+    main->spriteOrder = ft_calloc(main->numSprites, sizeof(int));
+	y = 0;
+	int numSprites = 0;
+	while (y <= main->Ray.yy)
+	{
+		while (main->place.cubemap[y][x])
+		{
+			if (main->place.cubemap[y][x] == 2)
+			{
+				main->sprites[numSprites].x = (double)x + 0.5;
+				main->sprites[numSprites].y = (double)y + 0.5;
+				numSprites++;
+			}
+			x++;
+		}
+		y++;
+	}
+}
+
+void  swap(t_struct_m *main , int j)
+{
+    int     temp_order;
+    double  temp_dist;
+    
+    temp_dist = (main->spriteDistance)[j];
+    temp_order = (main->spriteOrder)[j];
+    (main->spriteDistance)[j] = (main->spriteDistance)[j + 1];
+    (main->spriteDistance)[j + 1] = temp_dist;
+    (main->spriteOrder)[j] = (main->spriteOrder)[j + 1];
+    (main->spriteOrder)[j + 1] = temp_order;
+}
+
+void        bubble_sort(t_struct_m *main)
+{
+    int     swapped;
+    int     i;
+    int     j;
+    swapped = 1;
+    i = 0;
+    j = 0;
+    while (main->numSprites - i > 1 && swapped == 1)
+    {
+        swapped = 0;
+        j = 0;
+        while (j < main->numSprites - i - 1)
+        {
+            if ((main->spriteDistance)[j] < (main->spriteDistance)[j + 1])
+            {
+                swap(main, j);
+                swapped = 1;
+            }
+            // if ((main->ray.dir_y > 0 && main->ray.plane_y < 0 && main->ray.dir_x < 0 && main->ray.plane_x > 0) || (main->ray.dir_y > 0 && main->ray.plane_y > 0 && main->ray.dir_x < 0 && main->ray.plane_x > 0))
+            // {
+            //  if ((main->spriteDistance)[j] > (main->spriteDistance)[j + 1])
+            // {
+            //  swap(main, j);
+            //  swapped = 1;
+            // }
+            // }
+            j++;
+        }
+        i++;
+    }
+}
+
 void        set_value_texture(t_struct_m *main)
 {
     int i = 0;
-	char	*str;
-    // while (i != 5)
-    // {
-    // 	main->texture[i].texture_width = 0;
-    //  	main->texture[i].texture_height = 0;
-	//  	main->texture[i].bits_per_pixel = 0;
-	// 	main->texture[i].line_lenght = 0;
-	// 	main->texture[i].endian = 0;
-    //  i++;
-    // }
-    // i = 0;
+	// int	x = 0;
+	// int	y = 0;
+	// main->texture = malloc(5 * sizeof (t_texture));
+	// while (y <= 5)
+	// {
+	// 	main->texture->buffer[y] = malloc(main->place.s_width * sizeof(unsigned int));
+	// 	while (i <= main->place.s_width)
+	// 	{
+	// 		main->texture->buffer[y][i] = malloc(main->place.s_height * sizeof(unsigned int));
+	// 		i++;
+	// 	}
+	// 	y++;
+	// }
+
     ft_putstr(main->place.NO);
     ft_putstr("NO");
 	// if (mlx_xpm_file_to_image(main->vars.mlx, "./textures/wall_2.xm", &(main->texture[0].texture_width), &(main->texture[0].texture_height)) == NULL)

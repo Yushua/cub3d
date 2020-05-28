@@ -145,7 +145,7 @@ typedef struct  s_Ray {
 }    			t_Ray;
 
 typedef struct  s_texture {
-	unsigned int 	buffer[800][1200];
+	unsigned int 	buffer[1200][800];
 	void			*texture;
 	int				*texture_adress;
 
@@ -157,6 +157,42 @@ typedef struct  s_texture {
 
 }               t_texture;
 
+typedef struct  s_sprite {
+
+	double		spritex;
+	double		spritey;
+	double 		invDet;
+
+	double		transformX;
+	double		transformY;
+
+	int			spriteScreenX;
+	int			vMoveScreen;
+
+	int 		spriteHeight;
+
+	int			drawStartY;
+	int			drawendY;
+	int			drawStartX;
+	int			drawendX;
+
+	int			spriteWidth;
+	int			stripe;
+
+	double		first;
+	int			second;
+
+	int			begin;
+	int			end;
+}               t_sprite;
+
+typedef struct  s_sprites {
+
+	double		x;
+	double		y;
+
+}               t_sprites;
+
 typedef struct  s_struct_m {
 	t_data		img;
 	t_vars		vars;
@@ -164,6 +200,14 @@ typedef struct  s_struct_m {
 	t_Double	Double;
 	t_Ray		Ray;
 	t_texture	texture[5];
+	t_sprite	sprite;
+	t_sprites	*sprites;
+
+	//sprites
+	int			numSprites;//don't foget to malloc them AFTER you know the numSprites
+	double 		*ZBuffer;
+	int 		*spriteOrder;
+	double 		*spriteDistance;
 }               t_struct_m;
 
 void            my_mlx_pixel_put(t_data *data, int x, int y, int color);
@@ -221,4 +265,9 @@ void    		verLine_texture(int x, t_struct_m *main);
 void        	set_value_texture(t_struct_m *main);
 void    		verLine_structure(t_struct_m *main);
 
+int         	render_next_frame_sprites(t_struct_m *main);
+
+void			spritesnumb(t_struct_m *main);
+void        	swap(t_struct_m *main , int j);
+void        	bubble_sort(t_struct_m *main);
 #endif

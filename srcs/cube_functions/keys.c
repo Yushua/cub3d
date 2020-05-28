@@ -60,6 +60,18 @@ int             wasd_2(int keycode, t_struct_m *main)
     }
     else if (keycode == D || keycode == 100)
     {
+        double oldDirX = main->Ray.dirX;
+
+        main->Ray.dirX = main->Ray.dirX * cos(rotSpeed) - main->Ray.dirY * sin(rotSpeed);
+        main->Ray.dirY = oldDirX * sin(rotSpeed) + main->Ray.dirY * cos(rotSpeed);
+
+        double oldplanex = main->Ray.planeX;
+                            
+        main->Ray.planeX = main->Ray.planeX * cos(rotSpeed) - main->Ray.planeY * sin(rotSpeed);
+        main->Ray.planeY = oldplanex * sin(rotSpeed) + main->Ray.planeY * cos(rotSpeed);        
+    }
+    else if (keycode == A || keycode == 97)
+    {
         //both camera direction and camera plane must be rotated
         double olddirx = main->Ray.dirX;
 
@@ -70,18 +82,6 @@ int             wasd_2(int keycode, t_struct_m *main)
                             
         main->Ray.planeX = main->Ray.planeX * cos(-rotSpeed) - main->Ray.planeY * sin(-rotSpeed);
         main->Ray.planeY = oldplanex * sin(-rotSpeed) + main->Ray.planeY * cos(-rotSpeed);        
-    }
-    else if (keycode == A || keycode == 97)
-    {
-        double oldDirX = main->Ray.dirX;
-
-        main->Ray.dirX = main->Ray.dirX * cos(rotSpeed) - main->Ray.dirY * sin(rotSpeed);
-        main->Ray.dirY = oldDirX * sin(rotSpeed) + main->Ray.dirY * cos(rotSpeed);
-
-        double oldplanex = main->Ray.planeX;
-                            
-        main->Ray.planeX = main->Ray.planeX * cos(rotSpeed) - main->Ray.planeY * sin(rotSpeed);
-        main->Ray.planeY = oldplanex * sin(rotSpeed) + main->Ray.planeY * cos(rotSpeed);        
     }
     if (keycode == esc || keycode == 65307)
     {

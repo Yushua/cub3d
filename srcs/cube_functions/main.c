@@ -6,7 +6,7 @@
 /*   By: ybakker <ybakker@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/03/09 16:41:21 by ybakker       #+#    #+#                 */
-/*   Updated: 2020/05/25 19:29:40 by anonymous     ########   odam.nl         */
+/*   Updated: 2020/05/28 17:58:44 by anonymous     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ int     main(void)
     t_struct_m *main;
     
     main = ft_calloc(1, sizeof(t_struct_m));
+    // main->texture = malloc(5 * sizeof (t_texture));
 
     background(main);
     set_value(main);
@@ -36,6 +37,7 @@ int     main(void)
     // else if (main->place.error_c == 0) //don't forget to free
     //     return (0);
     printmap(main);
+    spritesnumb(main);
     ft_putstr("data");
 	int i = 0;
     main->vars.mlx = mlx_init();

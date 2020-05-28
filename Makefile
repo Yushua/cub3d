@@ -6,7 +6,7 @@
 #    By: ybakker <ybakker@student.codam.nl>           +#+                      #
 #                                                    +#+                       #
 #    Created: 2020/03/05 10:59:00 by ybakker       #+#    #+#                  #
-#    Updated: 2020/05/21 22:57:04 by anonymous     ########   odam.nl          #
+#    Updated: 2020/05/28 14:59:01 by anonymous     ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,7 @@ SRCS =	./srcs/cube_functions/main.c\
 		./srcs/cube_functions/functions.c\
 		./srcs/cube_functions/set_value.c\
 		./srcs/cube_functions/raycasting_texture.c\
+		./srcs/cube_functions/raycasting_sprites.c\
 		./srcs/cube_functions/readmap/read_map.c\
 		./srcs/cube_functions/readmap/get_map.c\
 		./srcs/cube_functions/readmap/check_r.c\

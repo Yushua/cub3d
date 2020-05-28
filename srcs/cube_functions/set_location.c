@@ -31,7 +31,7 @@ void	set_location(t_struct_m *main)
             {
                 r = 1;
                 main->Ray.dirY = 0.0;
-                main->Ray.dirX = -1;
+                main->Ray.dirX = 1.0;
                 main->Ray.planeX = 0.0;
                 main->Ray.planeY = 0.66;
             }
@@ -39,7 +39,7 @@ void	set_location(t_struct_m *main)
             {
                 r = 1;
                 main->Ray.dirY = 0.0;
-                main->Ray.dirX = 1.0;
+                main->Ray.dirX = -1;
                 main->Ray.planeX = 0.0;
                 main->Ray.planeY = -0.66;
             }
@@ -48,7 +48,7 @@ void	set_location(t_struct_m *main)
                 r = 1;
                 main->Ray.dirY = 1.0;
                 main->Ray.dirX = 0.0;
-                main->Ray.planeX = 0.66;
+                main->Ray.planeX = -0.66;
                 main->Ray.planeY = 0.0;
             }
             else if (main->place.cubemap[y][x] == 'N')
@@ -56,7 +56,7 @@ void	set_location(t_struct_m *main)
                 r = 1;
                 main->Ray.dirY = -1;
                 main->Ray.dirX = 0.0;
-                main->Ray.planeX = -0.66;
+                main->Ray.planeX = 0.66;
                 main->Ray.planeY = 0.0;
             }
             x++;
