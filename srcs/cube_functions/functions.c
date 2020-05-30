@@ -4,37 +4,41 @@ void		spritesnumb(t_struct_m *main)
 {
 	int	y = 0;
 	int	x = 0;
-
 	while (y <= main->Ray.yy)
 	{
 		while (main->place.cubemap[y][x])
 		{
-			if (main->place.cubemap[y][x] == 2)
+			// ft_putstr("hello");
+			if (main->place.cubemap[y][x] == '2')//place with the where yu look
 			{
 				main->numSprites++;
 			}
 			x++;
 		}
 		y++;
+		x = 0;
 	}
 	main->sprites = ft_calloc(main->numSprites, sizeof(t_sprites));
     main->ZBuffer = ft_calloc(main->place.s_width, sizeof(double));
     main->spriteDistance = ft_calloc(main->numSprites, sizeof(double));
     main->spriteOrder = ft_calloc(main->numSprites, sizeof(int));
 	y = 0;
-	int numSprites = 0;
+	x = 0;
+	int numsprites = 0;
 	while (y <= main->Ray.yy)
 	{
-		while (main->place.cubemap[y][x])
+		while (main->place.cubemap[y][x] != '\0')
 		{
-			if (main->place.cubemap[y][x] == 2)
+			if (main->place.cubemap[y][x] == '2')
 			{
-				main->sprites[numSprites].x = (double)x + 0.5;
-				main->sprites[numSprites].y = (double)y + 0.5;
-				numSprites++;
+				main->sprites[numsprites].x = (double)x + 0.5;
+				main->sprites[numsprites].y = (double)y + 0.5;
+				printf("[spritenumb = [%d] x == [%f] y == [%f]]\n", numsprites, main->sprites[numsprites].x, main->sprites[numsprites].y);
+				numsprites++;
 			}
 			x++;
 		}
+		x = 0;
 		y++;
 	}
 }
