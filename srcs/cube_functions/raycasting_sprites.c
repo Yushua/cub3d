@@ -80,7 +80,7 @@ int         render_next_frame_sprites(t_struct_m *main)
 		int		d;
 		int		texY;
 		int		colour;
-		printf("transformy == [%f]\n stripe == [%d]\n zbuffer == [%f]\n",main->sprite.transformY, main->sprite.stripe, main->ZBuffer[main->sprite.stripe]);
+		// printf("transformy == [%f]\n stripe == [%d]\n zbuffer == [%f]\n",main->sprite.transformY, main->sprite.stripe, main->ZBuffer[main->sprite.stripe]);
 		while (main->sprite.stripe < main->sprite.drawendX)
 		{
 			int		texX = (int)(256 * (main->sprite.stripe - (-main->sprite.spriteWidth / 2 + main->sprite.spriteScreenX)) * main->texture->texture_width / main->sprite.spriteWidth) / 256;
@@ -92,7 +92,9 @@ int         render_next_frame_sprites(t_struct_m *main)
 					d = (y) * 256 - main->place.s_height * 128 + main->sprite.spriteHeight * 128;
 					texY = ((d * main->texture[4].texture_height) / main->sprite.spriteHeight) / 256;
 					colour	= main->texture[4].texture_adress[main->texture[4].texture_width * texY + texX];
-					my_mlx_pixel_put(main, main->Ray.x, y, colour);
+					// printf("[%d]\n", colour);
+					if (colour != 0)
+						my_mlx_pixel_put(main, main->sprite.stripe, y, colour);
 					y++;
 				}
 				

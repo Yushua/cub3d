@@ -266,6 +266,7 @@ void        	set_value_texture(t_struct_m *main);
 void    		verLine_structure(t_struct_m *main);
 
 int         	render_next_frame_sprites(t_struct_m *main);
+int        		render_next_frame_sprites_copy(t_struct_m *main);
 
 void			spritesnumb(t_struct_m *main);
 void        	swap(t_struct_m *main , int j);

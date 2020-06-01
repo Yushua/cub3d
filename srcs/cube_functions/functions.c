@@ -134,7 +134,7 @@ void        set_value_texture(t_struct_m *main)
     i++;
     ft_putstr(main->place.S);
     ft_putstr("S");
-    main->texture[4].texture = mlx_xpm_file_to_image(main->vars.mlx, "srcs/cube_functions/textures/greystone.xpm", &main->texture[4].texture_width, &main->texture[4].texture_height);
+    main->texture[4].texture = mlx_xpm_file_to_image(main->vars.mlx, "srcs/cube_functions/textures/pillar.xpm", &main->texture[4].texture_width, &main->texture[4].texture_height);
     printf("width == [%d] height == [%d]\n",main->texture[4].texture_width, main->texture[4].texture_height);
 	if (main->texture[0].texture == NULL || main->texture[1].texture == NULL || main->texture[2].texture == NULL || main->texture[3].texture == NULL || main->texture[4].texture == NULL)
 	{
