@@ -6,7 +6,7 @@
 /*   By: ybakker <ybakker@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/03/09 16:41:21 by ybakker       #+#    #+#                 */
-/*   Updated: 2020/05/28 17:58:44 by anonymous     ########   odam.nl         */
+/*   Updated: 2020/06/04 11:17:19 by anonymous     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,14 @@ int     main(void)
     set_location(main);
     ft_putstr("this means my other functions stil work\n");
     //map_correct(main);
+    printmap(main);
+    spritesnumb(main);
+	ft_putstr("begin fill check");
+	check_fill(main);
     if (main->place.error == -1)
         ft_putstr("no error\n");
     // else if (main->place.error_c == 0) //don't forget to free
     //     return (0);
-    printmap(main);
-    spritesnumb(main);
     ft_putstr("data");
 	int i = 0;
     main->vars.mlx = mlx_init();
@@ -51,5 +53,4 @@ int     main(void)
     mlx_loop_hook(main->vars.mlx, render_next_frame_structure, main);
     mlx_hook(main->vars.win, 2, 1L<<0, wasd_2, main);
     mlx_loop(main->vars.mlx);
-
 }

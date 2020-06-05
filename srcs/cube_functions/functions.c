@@ -1,5 +1,115 @@
 #include "cube.h"
 
+		// else
+		// {
+		// 	while (main->place.cubemap[y][x])
+		// 	{
+		// 		if (main->place.cubemap[y][x] != '1')//place with the where yu look
+		// 		{
+		// 			if ((if_empty(x, y, main)) == 0)
+		// 				return (0);
+		// 			y--;
+		// 			x--;
+		// 			if (y < 0 || x < 0)//check if the cordinates don't go out of the map
+		// 			{
+		// 				main->place.error_c = 15;
+		// 				ft_error(main);
+		// 				return (0);
+		// 			}
+		// 			if ((if_empty(x, y, main)) == 0)
+		// 				return (0);
+		// 			if ((if_empty(x, y, main)) == 0)
+		// 				return (0);
+		// 			x++;
+		// 			if ((if_empty(x, y, main)) == 0)
+		// 				return (0);
+		// 			x++;
+		// 			if ((if_empty(x, y, main)) == 0)
+		// 				return (0);
+		// 			x++;
+		// 			if ((if_empty(x, y, main)) == 0)
+		// 				return (0);
+		// 			y++;
+		// 			if ((if_empty(x, y, main)) == 0)
+		// 				return (0);
+		// 			x -= 2;
+		// 			if ((if_empty(x, y, main)) == 0)
+		// 				return (0);
+		// 			y++;
+		// 			if ((if_empty(x, y, main)) == 0)
+		// 				return (0);
+		// 			x++;
+		// 			if ((if_empty(x, y, main)) == 0)
+		// 				return (0);
+		// 			x++;
+		// 			if ((if_empty(x, y, main)) == 0)
+		// 				return (0);
+		// 			x--;
+		// 			y--;
+		// 			//start test check all sides if there is an emptt space
+		// 		}
+		// 		x++;
+		// 	}
+		// 	x--;
+		// 	if ((if_empty(x, y, main)) == 0)//the end
+		// 			return (0);
+		// }
+
+int		if_empty(int x, int y, t_struct_m *main)
+{
+	// if (y < 0 || x < 0)//check if the cordinates don't go out of the map
+	// 	return (0);
+	if (main->place.cubemap[y][x] == ' ')
+	{
+		printf("hello\n");
+		main->place.error_c = 15;
+        ft_error(main);
+		return (0);
+	}
+}
+
+int		check_fill(t_struct_m *main)
+{
+	int	y = 0;
+	int	x = 0;
+	while (y <= main->Ray.yy)
+	{
+		if (y == 0 || y == main->Ray.yy)
+		{
+			while (main->place.cubemap[y][x])
+			{
+				if (main->place.cubemap[y][x] != '1' || main->place.cubemap[y][x] != ' ')//top and bottom lines
+				{
+					main->place.error_c = 15;
+					ft_error(main);
+				}
+				x++;
+			}
+			x = 0;
+		}
+		else if (main->place.cubemap[y][x] != '1' || main->place.cubemap[y][x] != ' ')//beginning of each line
+		{
+			main->place.error_c = 16;
+			ft_error(main);
+		}
+		else
+		{
+			while (main->place.cubemap[y][x])
+			{
+				x++;
+			}
+			x--;
+			if (main->place.cubemap[y][x] != '1' || main->place.cubemap[y][x] != ' ')//beginning of each line
+			{
+				main->place.error_c = 17;
+				ft_error(main);
+			}
+		}
+		y++;
+		x = 0;
+	}
+}
+
 void		spritesnumb(t_struct_m *main)
 {
 	int	y = 0;

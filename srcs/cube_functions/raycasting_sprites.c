@@ -60,9 +60,11 @@ int         render_next_frame_sprites(t_struct_m *main)
 
 		//calculate lowest and highest pixel to fill in current stripe
 		main->sprite.drawStartY = -main->sprite.spriteHeight / 2 + main->place.s_height / 2;
+		// main->sprite.drawStartY -= 10;
 		if (main->sprite.drawStartY < 0)
 			main->sprite.drawStartY = 0;
 		main->sprite.drawendY = main->sprite.spriteHeight / 2 + main->place.s_height / 2;
+		// main->sprite.drawendY -= 10;
 		if (main->sprite.drawendY >= main->place.s_height)
 			main->sprite.drawendY = main->place.s_height - 1;
 

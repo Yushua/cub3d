@@ -145,7 +145,7 @@ typedef struct  s_Ray {
 }    			t_Ray;
 
 typedef struct  s_texture {
-	unsigned int 	buffer[1200][800];
+	// unsigned int 	buffer[1200][800];
 	void			*texture;
 	int				*texture_adress;
 
@@ -239,6 +239,9 @@ int     		get_size_map(t_struct_m *main, char *map);
 void     		ft_map_line(t_struct_m *main, char *map);
 int     		ft_check_news(t_struct_m *main, char *map);
 void			set_location(t_struct_m *main);
+void			spritesnumb(t_struct_m *main);
+int				check_fill(t_struct_m *main);
+int				if_empty(int x, int y, t_struct_m *main);
 
 //functions
 
@@ -268,7 +271,6 @@ void    		verLine_structure(t_struct_m *main);
 int         	render_next_frame_sprites(t_struct_m *main);
 int        		render_next_frame_sprites_copy(t_struct_m *main);
 
-void			spritesnumb(t_struct_m *main);
 void        	swap(t_struct_m *main , int j);
 void        	bubble_sort(t_struct_m *main);
 #endif
