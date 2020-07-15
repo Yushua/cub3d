@@ -6,38 +6,36 @@
 /*   By: ybakker <ybakker@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/03/09 16:41:21 by ybakker       #+#    #+#                 */
-/*   Updated: 2020/05/11 11:58:21 by anonymous     ########   odam.nl         */
+/*   Updated: 2020/07/03 11:11:42 by ybakker       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+char	*ft_substr(char const *s, int start, size_t len)
 {
-	char	*substring;
-	size_t	i;
-	size_t	length;
+	size_t	count;
+	size_t	size;
+	char	*tab;
 
+	count = 0;
 	if (!s)
-		return (0);
-	if (ft_strlen(s) < (size_t)start)
-		return (ft_strdup(""));
-	length = ft_strlen(s) - start;
-	substring = NULL;
-	if (length < len)
-		substring = (char *)malloc((length + 1) * sizeof(char));
-	else
-		substring = (char *)malloc((len + 1) * sizeof(char));
-	if (!substring)
 		return (NULL);
-	i = 0;
-	while (i < len && s[start + i])
+	if (ft_strlen(s) < start)
+		return (ft_strdup(""));
+	size = ft_strlen(s + start);
+	if (size < len)
+		len = size;
+	tab = (char *)malloc((len + 1) * sizeof(char));
+	if (!tab)
+		return (NULL);
+	while (count < len)
 	{
-		substring[i] = (char)s[i + start];
-		i++;
+		tab[count] = s[start + count];
+		count++;
 	}
-	substring[i] = '\0';
-	return (substring);
+	tab[count] = '\0';
+	return (tab);
 }
 
 int		ft_strlen(const char *s)
@@ -73,8 +71,8 @@ char	*ft_strdup(const char *s1)
 char	*ft_strjoin(char *s1, char *s2)
 {
 	char		*strduo;
-	size_t		i;
-	size_t		j;
+	int			i;
+	int			j;
 
 	i = 0;
 	j = 0;
