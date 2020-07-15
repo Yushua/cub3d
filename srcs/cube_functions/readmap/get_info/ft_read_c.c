@@ -6,7 +6,7 @@
 /*   By: ybakker <ybakker@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/06/16 15:08:39 by ybakker       #+#    #+#                 */
-/*   Updated: 2020/06/29 16:07:43 by ybakker       ########   odam.nl         */
+/*   Updated: 2020/07/15 14:08:25 by ybakker       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ static	int			ft_read_c_readd(t_struct_m *main, char *map, int i, int r)
 	}
 	else
 	{
-		main->place.error = 9;
+		main->place.error = 10;
 		ft_error(main);
 		return (0);
 	}

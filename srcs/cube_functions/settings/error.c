@@ -6,7 +6,7 @@
 /*   By: ybakker <ybakker@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/06/18 14:22:42 by ybakker       #+#    #+#                 */
-/*   Updated: 2020/07/10 17:12:17 by ybakker       ########   odam.nl         */
+/*   Updated: 2020/07/15 14:06:52 by ybakker       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,9 +144,9 @@ void			ft_error(t_struct_m *main)
 	if (main->place.error == 50)
 		ft_putstr("[50] clutter in the map file");
 	else if (main->place.error == 51)
-		ft_putstr("[51] c colour negative or higher than 256");
+		ft_putstr("[51] c colour negative or higher than 254");
 	else if (main->place.error == 52)
-		ft_putstr("[52] f colour negative");
+		ft_putstr("[52] f colour negative or higher than 254");
 	else if (main->place.error == 53)
 		ft_putstr("[53] width or hight in the negative");
 	main->place.error = 0;
